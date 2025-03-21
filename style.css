@@ -296,7 +296,8 @@ section h3 {
     align-items: center;
 }
 .contact-container h2, .contact-container p {
-    text-align: center;
+	display: flex;
+	text-align: center;
     margin: auto;
 }
 form {
