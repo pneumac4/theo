@@ -177,6 +177,9 @@ section h3 {
 .about-txt {
     margin-right: 50px;
 }
+.about-txt p {
+    font-size: 16px;
+}
 
 .cv-boutton {
     margin-top: 20px;
