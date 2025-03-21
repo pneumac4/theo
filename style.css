@@ -131,9 +131,9 @@ section {
     padding: 5px 30px;
     text-decoration: none;
     box-shadow: 2px 2px 5px var(--flamme);
-    transition: box-shadow 0.3s ease-in-out;
+    transition: box-shadow 0.2s ease-in-out;
     &:hover {
-        box-shadow: -2px -2px 5px var(--flamme);
+        box-shadow: 0 0 5px var(--flamme);
     }
 }
 
