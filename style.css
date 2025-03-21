@@ -222,6 +222,9 @@ section h3 {
     &:hover {
         box-shadow: 0 3px 5px var(--bleu-pastel);
         margin-top: -10px;
+        .view-button a {
+            box-shadow: none;
+        }
     }
 }
 
@@ -245,7 +248,11 @@ section h3 {
     border-radius: 4px;
     font-size: 13px;
     text-decoration: none;
-    box-shadow: 0 0 7px var(--bleu-pastel);
+    box-shadow: 0 2px 7px var(--bleu-pastel);
+    transition: box-shadow 0.3s ease-in-out, background-color 0.2s ease-in-out;
+    &:hover {
+        background-color: #fd8c29;
+    }
 }
 
 .container-skills {
