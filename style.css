@@ -364,6 +364,8 @@ button {
 
 .footer-contents {
     display: flex;
+    flex-direction: column;
+    align-items: center;
 	justify-content: center;
     width: 100%;
 	padding: 20px 10%;
@@ -373,7 +375,31 @@ button {
 	font-size: 14px;
 	color: #999;
 }
-.footer-contents p span{
+.footer-contents div{
+	font-size: 11px;
+	color: #999;
+    text-transform: uppercase;
+}
+.sci {
+    position: relative;
+    display: flex;
+    gap: 30px;
+}
+.sci li {
+    list-style: none;
+}
+.sci li a {
+    font-size: 1.8em;
+    transition: 0.5s;
+    &:hover {
+        color: #00bcd4;
+        &::after {
+            display: none;
+        }
+    }
+}
+
+.footer-contents p span {
 	color: #ff5252;
 	font-weight: bold;
 }
