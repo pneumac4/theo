@@ -132,21 +132,22 @@
         <div class="contact-container">
             <h2>Avez-vous un projet en plan ?</h2>
             <p>En quête d’un idéal candidat ? Vous tombez bien.</p>
-            <form action="https://formsubmit.co/pneumacatiany4@gmail.com" method="post">
+            <form id="formulaire">
                 <div class="first-and-last-name-label">
-                    <label class="first-name-label">Votre nom
-                        <input type="text" placeholder="Jhon" minlength="2" maxlength="50" required>
+                    <label class="first-name-label">Votre nom*
+                        <input id="" name="nom" type="text" placeholder="Jhon" minlength="2" maxlength="50" required>
                     </label>
-                    <label class="last-name-label">Votre prénom
-                        <input type="text" placeholder="McGarrett" minlength="2" maxlength="50" required>
+                    <label class="last-name-label">Votre prénom*
+                        <input id="" name="prenom" type="text" placeholder="McGarrett" minlength="2" maxlength="50" required>
                     </label>
                 </div>
-                <label class="subject-label">Votre sujet
-                    <input type="text" placeholder="Développement d'un site web" minlength="5" maxlength="100" required>
+                <label class="subject-label">Votre email*
+                    <input id="" name="email" type="email" placeholder="example@gmail.com" minlength="12" maxlength="100" required>
                 </label>
-                <textarea name="" id="" placeholder="Ecrivez votre message ici..." minlength="5" maxlength="1500" required></textarea>
-                <button type="submit" target="_blanc">Envoyer</button>
+                <textarea rows="10" name="message" id="" placeholder="Ecrivez votre message ici..." minlength="5" maxlength="1500" required></textarea>
+                <button id="submit-button" type="submit">Envoyer</button>
             </form>
+            <div id="confirmation-message" style="display: none; color:rgb(109, 205, 109); font-size: 14px;">Message envoyé avec succès !</div>
         </div>
     </section>
 

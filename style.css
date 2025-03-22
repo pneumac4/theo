@@ -337,13 +337,14 @@ input {
 textarea {
     width: 100%;
     min-height: 150px;
+    min-width: 200px;
     border-radius: 6px;
     border: var(--bleu-violet) 1.4px solid;
     margin-top: 5px;
     padding: 10px;
 }
 ::placeholder {
-    color: rgb(221, 221, 221);
+    color: rgb(208, 208, 208);
     font-size: 11px;
 }
 button {

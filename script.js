@@ -34,3 +34,16 @@ document.addEventListener("DOMContentLoaded", function () {
 function openImage(imageUrl) {
     window.open(imageUrl, "_self");
 }
+
+document.getElementById('formulaire').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const messageDiv = document.getElementById('confirmation-message')
+    messageDiv.style.display = 'block';
+
+    setTimeout(() => {
+        messageDiv.style.display = 'none';
+    }, 3000);
+
+    this.reset();
+});
