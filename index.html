@@ -3,128 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Synthex</title>
     <script src="https://kit.fontawesome.com/7ee50907d4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
 
+    <div class="on-top">
+        <canvas id="marquee" width="1200" height="35"></canvas>
+    </div>
     <header>
         <div class="nav-bar">
             <div class="name">
-                <p class="txt-left">CATIANY <span class="last-name">Pneuma</span></p>
+                <p class="txt-left">Syn<span class="last-name1">Thex</span></p>
             </div>
             <div class="menu">
                 <ul>
                     <li><a class="active" href="#home">Acceuil</a></li>
-                    <li><a href="#about">A propos</a></li>
-                    <li><a href="#projects">Projets</a></li>
-                    <li><a href="#skills">Compétences</a></li>
+                    <li class="has-submenu">
+                        <a style="pointer-events: none; cursor: default;" href="#dashboard">Tableau de bord <i class="fa-solid fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="#dashboard">Vue d'ensemble</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#sec-fiches">Fiches</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
-            <div class="contact-button"><a href="#contact">Contact</a></div>
+
+            <div id="welcomeuser">
+                <!-- <div class="contact-button">
+                    <a href="" id="loginBtn" onclick="handleLogin()">Se connecter
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                    </a>
+                </div> -->
+            
+                <!-- <div class="user-connect">Pneuma
+                    <i class="fa-solid fa-circle-user"></i>
+                    <i class="fa-solid fa-right-from-bracket disconnect-icon"></i>
+                </div> -->
+            </div>
         </div>
     </header>
 
     <section id="home" class="home-section">
         <div class="left-home">
             <div class="txt-about">
-                <p>Je suis <span class="last-name">Pneuma</span>, développeur en devenir <br>passionné par le Web et le Design !</p>
+                <p class="xl-txt"><span></span>Organiser tes connaissances, synthétiser ce que tu apprends et retrouver facilement l'<span style="color: #226D68;">essentiel</span>.</p>
+                <p class="small-txt"><span></span>Que tu sois <span style="border-bottom: solid 1px #226D68;">étudiant</span>, <span style="border-bottom: solid 1px #226D68;">autodidacte</span> ou simplement <span style="border-bottom: solid 1px #226D68;">curieux</span>, ce site t’accompagne dans la création de fiches claires, structurées et accessibles à tout moment.</p>
             </div>
             <div class="project-button">
-                <a href="#projects">Voir mes projets</a>
+                <a href="#projects">Apprendre plus</a>
+            </div>
+            <div class="project-button2">
+                <a href="#projects">Nouveau projet</a>
             </div>
         </div>
         <div class="right-home">
-            <img src="images/web-dev.jpg" alt="Web Développement">
+            <img src="images/connaissance1.jpg" alt="Web Développement">
         </div>
     </section>
 
-    <section id="about" class="about-section">
-        <h3>A propos</h3>
-        <div class="about-container">
-            <div class="about-content">
-                <div class="about-txt">
-                    <p>Je m'appelle <span class="last-name">CATIANY</span>, passionné par la
-                        <br>création des sites web modernes et interactifs.<br>
-                        <br>Je suis actuellement étudiant en <span class="last-name">développement web</span>,
-                        <br>et je cherche à améliorer mes compétences en JavaScript, HTML et CSS.<br>
-                        <br>J’adore transformer mes idées en projets concrets<br>
-                        et expérimenter avec les nouvelles technologies.</p>
-                </div>
-                <div class="cv-boutton">
-                    <a href="cv/cv-pneuma.txt" download>Télécharger mon CV &nbsp;&nbsp;↓</a>
-                </div>
+    <section id="dashboard" class="skills-section">
+        <div class="container-dashboard">
+            <h3>Vue d'ensemble</h3>
+            <div class="top-dashboard">
+                <p class="top-dashboard1">Bienvenue au tableau de bord <span>Admin</span></p>
+                <p class="top-dashboard2"><span>Tableau de bord</span> > Enregistrements</p>
             </div>
-            <div class="profil-pic">
-                <img src="images/profil-img.jpg" alt="Pneuma CATIANY">
+            <div class="container-skills">
+                <div class="skills-cases skills-case1">
+                    <div class="skills-case11">
+                        <div class="skills-case111">
+                            <h1>12</h1>
+                            <p class="title-skill" style="margin-bottom: 13px">Développement</p>
+                        </div>
+                        <p class="title-skill" style="margin-top: 13px; margin-bottom: 13px"><i class="fa-solid fa-arrow-up-right-dots"></i></p>
+                    </div>
+                    <a href="#" class="skills-case-content1">
+                        <p class="title-skill" style="margin-top: 3px; margin-bottom: 3px">Plus d'info <i class="fa-regular fa-circle-right"></i></p>
+                    </a>
+                </div>
+                <div class="skills-cases skills-case2">
+                    <div class="skills-case22">
+                        <div class="skills-case222">
+                            <h1>8</h1>
+                            <p class="title-skill" style="margin-bottom: 13px">Culture générale</p>
+                        </div>
+                        <p class="title-skill" style="margin-top: 13px; margin-bottom: 13px"><i class="fa-solid fa-globe"></i></p>
+                    </div>
+                    <a href="#" class="skills-case-content2">
+                        <p class="title-skill" style="margin-top: 3px; margin-bottom: 3px">Plus d'info <i class="fa-regular fa-circle-right"></i></p>
+                    </a>
+                </div>
+                <div class="skills-cases skills-case3">
+                    <div class="skills-case33">
+                        <div class="skills-case333">
+                            <h1>18</h1>
+                            <p class="title-skill" style="margin-bottom: 13px">Langues</p>
+                        </div>
+                        <p class="title-skill" style="margin-top: 13px; margin-bottom: 13px"><i class="fa-solid fa-language"></i></p>
+                    </div>
+                    <a href="#" class="skills-case-content3">
+                        <p class="title-skill" style="margin-top: 3px; margin-bottom: 3px">Plus d'info <i class="fa-regular fa-circle-right"></i></p>
+                    </a>
+                </div>
+                <div class="skills-cases skills-case4">
+                    <div class="skills-case44">
+                        <div class="skills-case444">
+                            <h1>4</h1>
+                            <p class="title-skill" style="margin-bottom: 13px">Science</p>
+                        </div>
+                        <p class="title-skill" style="margin-top: 13px; margin-bottom: 13px"><i class="fa-solid fa-flask-vial"></i></p>
+                    </div>
+                    <a href="#" class="skills-case-content4">
+                        <p class="title-skill" style="margin-top: 3px; margin-bottom: 3px">Plus d'info <i class="fa-regular fa-circle-right"></i></p>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="project-section">
-        <h3>Mes projets</h3>
+    <!-- #FICHES -->
+
+    <section id="sec-fiches" class="project-section">
+        <h3>Fiches récentes</h3>
         <div class="container-case">
-            <div class="cases case1" onclick="openImage('projects/d-clic.jpg')">
-                <div class="desc-projet">
-                    <p class="desc">Application pour la représentation des communes d’Haïti.</p>
+            <div class="cases case1">
+                <h2>La méthode Feynman</h2>
+                <div class="desc-projet-def">
+                    <p class="desc-def">La méthode Feynman est une technique d’apprentissage qui consiste à expliquer un concept avec ses propres mots, comme si on l’enseignait à un enfant.</p>
+                </div>
+                <h5>Étapes</h5>
+                <div class="desc-projet-ol">
+                    <p class="desc-ol">
+                        <ol style="list-style: none; font-size: 15px;">
+                            <li>- Choisir un concept à comprendre -</li>
+                            <li>- L’expliquer avec ses propres mots -</li>
+                            <li>- Identifier les zones de confusion -</li>
+                            <li>- Retourner aux sources pour clarifier -</li>
+                        </ol>
+                    </p>
+                </div>
+                <h5>Avantages</h5>
+                <div class="desc-projet-ul">
+                    <p class="desc-ul">
+                        <ul style="list-style: none; font-size: 15px;">
+                            <li>Mémorisation durable</li>
+                            <li>Appropriation du savoir</li>
+                            <li>Détection des faiblesses de<br>compréhension (zones floues)</li>
+                        </ul>
+                    </p>
                 </div>
                 <div class="technologies">
-                    <p>#java, #xml</p>
+                    <p>Catégorie : Culture générale</p>
+                    <p>Ajouté le : 12 avril 2025</p>
                 </div>
-                <div class="view-button"><a href="projects/d-clic.jpg" target="_blank">Voir</a></div>
+                <div class="view-button"><a href="#">Consulter</a></div>
             </div>
-            <div class="cases case2" onclick="openImage('projects/d-clic.jpg')">
-                <div class="desc-projet">
-                    <p class="desc">Application pour la gestion optimisée des ventes en magasin.</p>
+            <div class="cases case2">
+                <h2>La Courbe de l’Oubli</h2>
+                <div class="desc-projet-def">
+                    <p class="desc-def">La courbe de l’oubli est un concept développé par Hermann Ebbinghaus qui montre comment l’information est oubliée au fil du temps si elle n’est pas révisée régulièrement.</p>
+                </div>
+                <h5>Solutions</h5>
+                <div class="desc-projet-ol">
+                    <p class="desc-ol">
+                        <ol style="list-style: none; font-size: 15px;">
+                            <li>- Révisions espacées -</li>
+                            <li>- Auto-évaluation et rappels -</li>
+                            <li>- Retourner aux sources pour clarifier -</li>
+                            <li>- Réexpliquer plus clairement -</li>
+                        </ol>
+                    </p>
+                </div>
+                <h5>Exemple de planning de révision</h5>
+                <div class="desc-projet-ul">
+                    <p class="desc-ul">
+                        <ul style="list-style: none; font-size: 15px;">
+                            <li>1er rappel : quelques heures après</li>
+                            <li>2e rappel : 1 jour après</li>
+                            <li>3e rappel : 3 jours après</li>
+                            <li>4e rappel : 1 semaine plus tard</li>
+                        </ul>
+                    </p>
                 </div>
                 <div class="technologies">
-                    <p>#c-sharp</p>
+                    <p>Catégorie : Développement</p>
+                    <p>Ajouté le : 19 avril 2025</p>
                 </div>
-                <div class="view-button"><a href="projects/d-clic.jpg" target="_blank">Voir</a></div>
+                <div class="view-button"><a href="#">Consulter</a></div>
             </div>
-            <div class="cases case3" onclick="openImage('projects/d-clic.jpg')">
-                <div class="desc-projet">
-                    <p class="desc">Application pour la gestion efficace des employés et de leurs informations.</p>
+            <div class="cases case3">
+                <h2>La mémoire</h2>
+                <div class="desc-projet-def">
+                    <p class="desc-def">La mémoire humaine est un système complexe qui se divise en plusieurs types, chacun jouant un rôle spécifique dans l’apprentissage et la rétention d’informations.</p>
+                </div>
+                <h5>Types de mémoire</h5>
+                <div class="desc-projet-ol">
+                    <p class="desc-ol">
+                        <ol style="list-style: none; font-size: 15px;">
+                            <li>- Mémoire sensorielle -</li>
+                            <li>- Mémoire à court terme -</li>
+                            <li>- Mémoire de travail -</li>
+                            <li>- Mémoire à long terme -</li>
+                        </ol>
+                    </p>
+                </div>
+                <h5>Astuces pour renforcer la mémoire</h5>
+                <div class="desc-projet-ul">
+                    <p class="desc-ul">
+                        <ul style="list-style: none; font-size: 15px;">
+                            <li>Répéter activement</li>
+                            <li>Créer des associations mentales</li>
+                            <li>Dormir suffisamment</li>
+                            <li>Gérer le stress</li>
+                        </ul>
+                    </p>
                 </div>
                 <div class="technologies">
-                    <p>#python, #mysql</p>
+                    <p>Catégorie : Sciences</p>
+                    <p>Ajouté le : 01 mai 2025</p>
                 </div>
-                <div class="view-button"><a href="projects/d-clic.jpg" target="_blank">Voir</a></div>
+                <div class="view-button"><a href="#">Consulter</a></div>
             </div>
         </div>
     </section>
 
-    <section id="skills" class="skills-section">
-        <h3>Mes compétences</h3>
-        <div class="container-skills">
-            <div class="skills-cases skills-case1">
-                <h4>Compétences générales</h4>
-                <div class="skills-case-content">
-                    <p class="title-skill" style="margin-bottom: 13px">Gestion de projets</p>
-                    <div class="progress-bar"><div class="level-bar" style="width: 60%;"></div></div>
-                    <p class="title-skill" style="margin-top: 13px; margin-bottom: 13px;">Résolution problème</p>
-                    <div class="progress-bar"><div class="level-bar" style="width: 70%;"></div></div>
-                    <p class="title-skill" style="margin-top: 13px; margin-bottom: 13px">Adaptabilité</p>
-                    <div class="progress-bar"><div class="level-bar" style="width: 75%;"></div></div>
-                </div>
-            </div>
-            <div class="skills-cases skills-case2">
-                <h4>Compétences techniques</h4>
-                <div class="skills-case-content">
-                    <p class="title-skill">HTML</p>
-                    <div class="progress-bar"><div class="level-bar" style="width: 85%;"></div></div>
-                    <p class="title-skill">CSS</p>
-                    <div class="progress-bar"><div class="level-bar" style="width: 80%;"></div></div>
-                    <p class="title-skill">JavaScript</p>
-                    <div class="progress-bar"><div class="level-bar" style="width: 70%;"></div></div>
-                    <p class="title-skill">VS Code</p>
-                    <div class="progress-bar"><div class="level-bar" style="width: 80%;"></div></div>
-                </div>
-            </div>
+    <section class="geolocation-section">
+        <div class="position-container">
+            <p class="info">📍 Votre position est suivie pour personnaliser le contenu affiché selon votre région, et ainsi améliorer votre expérience utilisateur.</p>
+            <p id="latitude" class="coords">Latitude : ...</p>
+            <p id="longitude" class="coords">Longitude : ...</p>
+        </div>
+    </section>
+    <section class="map-section-container">
+        <div id="map-section" class="map-section">
+            <div id="map"></div>
+            <div onclick="recentrerCarte()" id="btn-localisation" class="btn-localisation"><i class="fa-solid fa-location-crosshairs"></i></div>
         </div>
     </section>
 
@@ -152,7 +272,7 @@
     </section>
 
     <footer class="footer-contents">
-        <div>Retrouvez-moi sur les réseaux sociaux</div>
+        <div>Retrouvez-nous sur les réseaux sociaux</div>
         <ul class="sci">
             <li><a href="#"><i class="fa-brands fa-whatsapp"></i></a></li>
             <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
@@ -162,6 +282,8 @@
         <p>&copy; 2025 <span>Catiany</span> | Tous droits réservés.</p>
     </footer>
     
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
     <script src="script.js"></script>
 
 </body>

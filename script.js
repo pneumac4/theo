@@ -1,3 +1,34 @@
+
+// #CANVAS
+
+const canvas = document.getElementById('marquee');
+const ctx = canvas.getContext('2d');
+
+const text = "Explorez et enrichissez votre connaissance à travers le site d’apprentissage sur la technologie.";
+const speed = 1;
+
+ctx.font = "14px Poppins";
+ctx.fillStyle = "#FEEAA1";
+
+let x = -ctx.measureText(text).width;
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillText(text, x, 22);
+
+    x += speed;
+
+    if (x > canvas.width) {
+        x = -ctx.measureText(text).width;
+    }
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+// #ACTIVE PAGE
+
 document.addEventListener("DOMContentLoaded", function () {
     const menuLinks = document.querySelectorAll(".menu a");
     const homeLink = document.querySelector(".menu a.active");
@@ -35,6 +66,102 @@ function openImage(imageUrl) {
     window.open(imageUrl, "_self");
 }
 
+
+// #LOCATION & MAP
+
+let map, marker;
+
+if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(
+    function(position) {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+
+        console.log("Latitude : " + lat);
+        console.log("Longitude : " + lng);
+
+        document.getElementById('latitude').textContent = "Latitude : " + lat;
+        document.getElementById('longitude').textContent = "Longitude : " + lng;
+
+        if (!map) {
+        map = L.map('map').setView([lat, lng], 16);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        marker = L.marker([lat, lng]).addTo(map)
+            .bindPopup("Vous êtes ici").openPopup();
+        } else {
+        marker.setLatLng([lat, lng]);
+        map.setView([lat, lng]);
+        }
+    },
+    function(error) {
+        console.error("Erreur de géolocalisation :", error.message);
+    },
+    {
+        enableHighAccuracy: true,
+        maximumAge: 0,
+        timeout: 5000
+    }
+    );
+} else {
+    alert("La géolocalisation n'est pas supportée par ce navigateur.");
+}
+
+function recentrerCarte() {
+  if (marker) {
+    map.setView(marker.getLatLng(), 17);
+  }
+}
+
+
+// #USER SESSION
+
+function handleLogin() {
+    const username = localStorage.getItem("username");
+
+    if (username) {
+    localStorage.removeItem("username");
+    localStorage.removeItem("session_expires");
+    updateUI();
+    } else {
+        const name = prompt("Entrez votre nom d'utilisateur :");
+        if (name) {
+          const expiration = Date.now() + 1000 * 60 * 60 * 1;
+            localStorage.setItem("username", name);
+            localStorage.setItem("session_expires", expiration);
+            updateUI();
+        }
+    }
+}
+
+function updateUI() {
+    const username = localStorage.getItem("username");
+    const expires = localStorage.getItem("session_expires");
+
+    const welcomeuser = document.getElementById("welcomeuser");
+
+    if (username && expires && Date.now() < parseInt(expires)) {
+    welcomeuser.innerHTML = "<div class='user-connect'><span title='Utilisateur : " + username + "'>" + username + "</span><i title='Statut : Connecté' class='fa-solid fa-circle-user'></i><i onclick='logout()' title='Déconnexion' class='fa-solid fa-right-from-bracket disconnect-icon'></i></div>";
+    } else {
+    welcomeuser.innerHTML = "<div class='contact-button'><a href='' id='loginBtn' onclick='handleLogin()'>Se connecter<i class='fa-solid fa-right-to-bracket'></i></a></div>";
+    localStorage.removeItem("username");
+    localStorage.removeItem("session_expires");
+    }
+}
+
+updateUI();
+
+function logout() {
+  localStorage.removeItem("username");
+  localStorage.removeItem("expiration");
+  location.reload();
+}
+
+// #CONTACT FORM
+
 document.getElementById('formulaire').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -43,7 +170,7 @@ document.getElementById('formulaire').addEventListener('submit', function(event)
 
     setTimeout(() => {
         messageDiv.style.display = 'none';
-    }, 3000);
+    }, 5000);
 
     this.reset();
 });
