@@ -1,4 +1,10 @@
 
+// if (typeof(Storage) !== "undefined") {
+//     alert ("Votre navigateur supporte l'API local storage !");
+// } else {
+//     alert ("Votre navigateur ne supporte pas l'API local storage !");
+// }
+
 // #CANVAS
 
 const canvas = document.getElementById('marquee');
@@ -67,6 +73,103 @@ function openImage(imageUrl) {
 }
 
 
+// #THEME
+
+const body = document.getElementById("maPage");
+const toggleBtn = document.getElementById("toggleTheme");
+const icon = document.getElementById("themeIcon");
+const themeImage = document.getElementById("themeImage");
+
+// Charger le thème au démarrage
+const savedTheme = localStorage.getItem("theme");
+
+function appliquerTheme(theme) {
+    if (savedTheme === "nuit") {
+        body.classList.replace("theme-jour", "theme-nuit");
+        icon.classList.replace("fa-moon", "fa-sun");
+        icon.title = "Thème clair";
+        themeImage.src = "images/connaissance2.jpg";
+    } else {
+        body.classList.add("theme-jour"); // par défaut
+        icon.classList.replace("fa-sun", "fa-moon");
+        icon.title = "Thème sombre";
+        themeImage.src = "images/connaissance1.jpg"; // image pour thème clair
+    }
+}
+
+// Au démarrage
+if (savedTheme === "nuit") {
+  appliquerTheme("nuit");
+} else {
+  appliquerTheme("jour");
+}
+
+// Bascule au clic
+toggleBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  if (body.classList.contains("theme-jour")) {
+    body.classList.replace("theme-jour", "theme-nuit");
+    icon.classList.replace("fa-moon", "fa-sun");
+    icon.title = "Thème clair";
+    themeImage.src = "images/connaissance2.jpg";
+
+    localStorage.setItem("theme", "nuit");
+  } else {
+    body.classList.replace("theme-nuit", "theme-jour");
+    icon.classList.replace("fa-sun", "fa-moon");
+    icon.title = "Thème sombre";
+    themeImage.src = "images/connaissance1.jpg";
+
+    localStorage.setItem("theme", "jour");
+  }
+});
+
+
+// #USER SESSION
+
+function handleLogin() {
+    const username = localStorage.getItem("username");
+
+    if (username) {
+    localStorage.removeItem("username");
+    localStorage.removeItem("session_expires");
+    updateUI();
+    } else {
+        const name = prompt("Entrez votre nom d'utilisateur :");
+        if (name) {
+          const expiration = Date.now() + 1000 * 60 * 60 * 1;
+            localStorage.setItem("username", name);
+            localStorage.setItem("session_expires", expiration);
+            updateUI();
+        }
+    }
+}
+
+function updateUI() {
+    const username = localStorage.getItem("username");
+    const expires = localStorage.getItem("session_expires");
+
+    const welcomeuser = document.getElementById("welcomeuser");
+
+    if (username && expires && Date.now() < parseInt(expires)) {
+    welcomeuser.innerHTML = "<div class='user-connect'><span title='Utilisateur : " + username + "'>" + username + "</span><i title='Statut : Connecté' class='fa-solid fa-circle-user'></i><i onclick='logout()' title='Déconnexion' class='fa-solid fa-right-from-bracket disconnect-icon'></i></div>";
+    } else {
+    welcomeuser.innerHTML = "<div class='contact-button'><a href='' id='loginBtn' onclick='handleLogin()'>Se connecter<i class='fa-solid fa-right-to-bracket'></i></a></div>";
+    localStorage.removeItem("username");
+    localStorage.removeItem("session_expires");
+    }
+}
+
+updateUI();
+
+function logout() {
+  localStorage.removeItem("username");
+  localStorage.removeItem("expiration");
+  location.reload();
+}
+
+
 // #LOCATION & MAP
 
 let map, marker;
@@ -116,49 +219,6 @@ function recentrerCarte() {
   }
 }
 
-
-// #USER SESSION
-
-function handleLogin() {
-    const username = localStorage.getItem("username");
-
-    if (username) {
-    localStorage.removeItem("username");
-    localStorage.removeItem("session_expires");
-    updateUI();
-    } else {
-        const name = prompt("Entrez votre nom d'utilisateur :");
-        if (name) {
-          const expiration = Date.now() + 1000 * 60 * 60 * 1;
-            localStorage.setItem("username", name);
-            localStorage.setItem("session_expires", expiration);
-            updateUI();
-        }
-    }
-}
-
-function updateUI() {
-    const username = localStorage.getItem("username");
-    const expires = localStorage.getItem("session_expires");
-
-    const welcomeuser = document.getElementById("welcomeuser");
-
-    if (username && expires && Date.now() < parseInt(expires)) {
-    welcomeuser.innerHTML = "<div class='user-connect'><span title='Utilisateur : " + username + "'>" + username + "</span><i title='Statut : Connecté' class='fa-solid fa-circle-user'></i><i onclick='logout()' title='Déconnexion' class='fa-solid fa-right-from-bracket disconnect-icon'></i></div>";
-    } else {
-    welcomeuser.innerHTML = "<div class='contact-button'><a href='' id='loginBtn' onclick='handleLogin()'>Se connecter<i class='fa-solid fa-right-to-bracket'></i></a></div>";
-    localStorage.removeItem("username");
-    localStorage.removeItem("session_expires");
-    }
-}
-
-updateUI();
-
-function logout() {
-  localStorage.removeItem("username");
-  localStorage.removeItem("expiration");
-  location.reload();
-}
 
 // #CONTACT FORM
 
