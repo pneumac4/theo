@@ -2,12 +2,18 @@
     --bg-color: white;
     --text-color: black;
     --gray: #333;
+    --box-shadow-button-project: #18534F;
+    --user-connected: #18534F;
+    --box-fiches-bg: rgba(211, 211, 211, 0.354);
 }
 
 .theme-nuit {
     --bg-color: black;
     --text-color: white;
-    --gray: rgb(226, 225, 225);
+    --gray: rgba(255, 255, 255, 0.758);
+    --box-shadow-button-project: white;
+    --user-connected: #226D68;
+    --box-fiches-bg: rgba(97, 97, 97, 0.354);
 }
 
 * {
@@ -181,7 +187,7 @@ header {
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-    color: #18534F;
+    color: var(--user-connected);
     font-weight: bold;
     min-width: 150px;
     font-size: 16px;
@@ -270,7 +276,7 @@ section {
     text-transform: uppercase;
     transition: box-shadow 0.2s ease-in-out;
     &:hover {
-        box-shadow: 0 0 5px #18534F;
+        box-shadow: 0 0 5px var(--box-shadow-button-project);
     }
 }
 
@@ -290,7 +296,7 @@ section {
     text-transform: uppercase;
     transition: box-shadow 0.2s ease-in-out;
     &:hover {
-        box-shadow: 0 0 5px #18534F;
+        box-shadow: 0 0 5px var(--box-shadow-button-project);
     }
 }
 
@@ -459,7 +465,7 @@ section h3 {
 }
 .cases {
     display: flex;
-    background-color: rgba(211, 211, 211, 0.354);
+    background-color: var(--box-fiches-bg);
     color: var(--gray);
     flex-direction: column;
     justify-content: start;
