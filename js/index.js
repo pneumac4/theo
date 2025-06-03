@@ -80,7 +80,6 @@ const toggleBtn = document.getElementById("toggleTheme");
 const icon = document.getElementById("themeIcon");
 const themeImage = document.getElementById("themeImage");
 
-// Charger le thème au démarrage
 const savedTheme = localStorage.getItem("theme");
 
 function appliquerTheme(theme) {
@@ -90,21 +89,19 @@ function appliquerTheme(theme) {
         icon.title = "Thème clair";
         themeImage.src = "images/connaissance2.jpg";
     } else {
-        body.classList.add("theme-jour"); // par défaut
+        body.classList.add("theme-jour");
         icon.classList.replace("fa-sun", "fa-moon");
         icon.title = "Thème sombre";
-        themeImage.src = "images/connaissance1.jpg"; // image pour thème clair
+        themeImage.src = "images/connaissance1.jpg";
     }
 }
 
-// Au démarrage
 if (savedTheme === "nuit") {
   appliquerTheme("nuit");
 } else {
   appliquerTheme("jour");
 }
 
-// Bascule au clic
 toggleBtn.addEventListener("click", function (e) {
   e.preventDefault();
 
@@ -153,11 +150,11 @@ function updateUI() {
     const welcomeuser = document.getElementById("welcomeuser");
 
     if (username && expires && Date.now() < parseInt(expires)) {
-    welcomeuser.innerHTML = "<div class='user-connect'><span title='Utilisateur : " + username + "'>" + username + "</span><i title='Statut : Connecté' class='fa-solid fa-circle-user'></i><i onclick='logout()' title='Déconnexion' class='fa-solid fa-right-from-bracket disconnect-icon'></i></div>";
+        welcomeuser.innerHTML = "<div class='user-connect'><span title='Utilisateur : " + username + "'>" + username + "</span><i title='Statut : Connecté' class='fa-solid fa-circle-user'></i><i onclick='logout()' title='Déconnexion' class='fa-solid fa-right-from-bracket disconnect-icon'></i></div>";
     } else {
-    welcomeuser.innerHTML = "<div class='contact-button'><a href='' id='loginBtn' onclick='handleLogin()'>Se connecter<i class='fa-solid fa-right-to-bracket'></i></a></div>";
-    localStorage.removeItem("username");
-    localStorage.removeItem("session_expires");
+        welcomeuser.innerHTML = "<div class='contact-button'><a href='' id='loginBtn' onclick='handleLogin()'>Se connecter<i class='fa-solid fa-right-to-bracket'></i></a></div>";
+        localStorage.removeItem("username");
+        localStorage.removeItem("session_expires");
     }
 }
 
@@ -168,6 +165,102 @@ function logout() {
   localStorage.removeItem("expiration");
   location.reload();
 }
+
+
+// #COMMENTS
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    const commentsList = document.getElementById('commentsList');
+    const commentForm = document.getElementById('formCommentaire');
+    const commentTextarea = document.getElementById('textareaCommentaire');
+    
+    const defaultComments = [
+        {
+            user: "Marcus",
+            date: "31/05/25 à 12:10",
+            text: "Votre travail est tout simplement incroyable ! Je suis émerveillé par votre créativité et votre originalité. Vos idées sont uniques et fascinantes, et je suis sûr que vous avez un avenir brillant devant vous. Continuez à suivre votre passion et à créer des œuvres qui inspirent et émerveillent les autres."
+        },
+        {
+            user: "Diego",
+            date: "31/05/25 à 12:40",
+            text: "L'équipe a été très à l'écoute et a su répondre à toutes mes questions. Un vrai plaisir de faire affaire avec eux !"
+        }
+    ];
+    
+    if (!localStorage.getItem('comments')) {
+        localStorage.setItem('comments', JSON.stringify(defaultComments));
+    }
+    
+    function displayLastTwoComments() {
+        const comments = JSON.parse(localStorage.getItem('comments'));
+        
+        const existingComments = document.querySelectorAll('.comment');
+        existingComments.forEach(comment => comment.remove());
+        
+        const lastTwoComments = comments.slice(-2);
+        lastTwoComments.forEach(comment => {
+            const commentElement = document.createElement('div');
+            commentElement.className = `comment comment--`;
+            
+            commentElement.innerHTML = `
+                <div class="avatar-user-date">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <div class="user-and-date">
+                        <div class="user-commented">${comment.user}</div>
+                        <div class="date-comment">${comment.date}</div>
+                    </div>
+                </div>
+                <p class="the-comment">${comment.text}</p>
+            `;
+            
+            commentsList.insertBefore(commentElement, commentForm.parentNode);
+        });
+    }
+    
+    function getCurrentDate() {
+        const now = new Date();
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const year = String(now.getFullYear()).slice(-2);
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        
+        return `${day}/${month}/${year} à ${hours}:${minutes}`;
+    }
+    
+    const currentUser = localStorage.getItem('username') || 'Utilisateur anonyme';
+    userName.innerHTML = `${currentUser}`;
+
+    commentForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const commentText = commentTextarea.value.trim();
+        if (commentText.length < 5) return;
+        
+        const newComment = {
+            user: currentUser,
+            date: getCurrentDate(),
+            text: commentText
+        };
+        
+        const comments = JSON.parse(localStorage.getItem('comments'));
+        comments.push(newComment);
+        localStorage.setItem('comments', JSON.stringify(comments));
+        
+        displayLastTwoComments();
+        
+        commentTextarea.value = '';
+    });
+    
+    displayLastTwoComments();
+});
+
+
+document.getElementById("textareaCommentaire").addEventListener("input", function() {
+    this.style.height = "auto";
+    this.style.height = this.scrollHeight + "px";
+});
 
 
 // #LOCATION & MAP

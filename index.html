@@ -37,16 +37,7 @@
             </div>
 
             <div id="welcomeuser">
-                <!-- <div class="contact-button">
-                    <a href="" id="loginBtn" onclick="handleLogin()">Se connecter
-                        <i class="fa-solid fa-right-to-bracket"></i>
-                    </a>
-                </div> -->
-            
-                <!-- <div class="user-connect">Pneuma
-                    <i class="fa-solid fa-circle-user"></i>
-                    <i class="fa-solid fa-right-from-bracket disconnect-icon"></i>
-                </div> -->
+                <!-- connexion -->
             </div>
         </div>
     </header>
@@ -235,14 +226,38 @@
         </div>
     </section>
 
+    <section class="comments-section" id="commentaires">
+        <h3>Commentaires</h3>
+        <div class="comments-container-xl">
+            <div class="comments-container">
+                <div class="comments" id="commentsList">
+
+                    <!-- commentaires -->
+
+                    <div class="comment-box">
+                        <div class="avatar-and-user">
+                            <i class="fa-solid fa-circle-user"></i>
+                            <div class="user-commented" id="userName">Utilisateur anonyme</div>
+                        </div>
+                        <form action="" id="formCommentaire">
+                            <textarea class="textarea-comment" name="" rows="1" id="textareaCommentaire" placeholder="Ecrivez votre commentaire ici..." minlength="5" maxlength="1500" required></textarea>
+                            <div class="div-submit-comment">
+                                <button class="button-submit-comment" type="submit">Commenter</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <section class="geolocation-section">
         <div class="position-container">
             <p class="info">📍 Votre position est suivie pour personnaliser le contenu affiché selon votre région, et ainsi améliorer votre expérience utilisateur.</p>
             <p id="latitude" class="coords">Latitude : ...</p>
             <p id="longitude" class="coords">Longitude : ...</p>
         </div>
-    </section>
-    <section class="map-section-container">
         <div id="map-section" class="map-section">
             <div id="map"></div>
             <div onclick="recentrerCarte()" id="btn-localisation" class="btn-localisation"><i class="fa-solid fa-location-crosshairs"></i></div>
@@ -253,7 +268,7 @@
         <div class="contact-container">
             <h2>Avez-vous un projet en plan ?</h2>
             <p>En quête d’un idéal candidat ? Vous tombez bien.</p>
-            <form id="formulaire">
+            <form class="form-contact" id="formulaire">
                 <div class="first-and-last-name-label">
                     <label class="first-name-label">Votre nom*
                         <input id="" name="nom" type="text" placeholder="Jhon" minlength="2" maxlength="50" required>
@@ -265,8 +280,8 @@
                 <label class="subject-label">Votre email*
                     <input id="" name="email" type="email" placeholder="example@gmail.com" minlength="12" maxlength="100" required>
                 </label>
-                <textarea rows="10" name="message" id="" placeholder="Ecrivez votre message ici..." minlength="5" maxlength="1500" required></textarea>
-                <button id="submit-button" type="submit">Envoyer</button>
+                <textarea class="textarea-contact" rows="10" name="message" id="" placeholder="Ecrivez votre message ici..." minlength="5" maxlength="1500" required></textarea>
+                <button class="button-submit-contact" id="submit-button" type="submit">Envoyer</button>
             </form>
             <div id="confirmation-message" style="display: none; color:rgb(109, 205, 109); font-size: 14px;">Message envoyé avec succès !</div>
         </div>
